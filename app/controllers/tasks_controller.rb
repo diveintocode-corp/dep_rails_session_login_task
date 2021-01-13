@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :login_required, except: [:index]
+  before_action :login_function_required, except: [:index]
 
   # GET /tasks
   # GET /tasks.json
@@ -72,7 +72,7 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
 
-    def login_required
+    def login_function_required
       redirect_to tasks_path, notice: "ログイン機能を実装してください。" unless defined? current_user
     end
 
