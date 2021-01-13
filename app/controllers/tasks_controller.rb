@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :login_required, except: [:index]
 
   # GET /tasks
   # GET /tasks.json
@@ -69,6 +70,10 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def login_required
+      redirect_to tasks_path, notice: "ログイン機能を実装してください。" unless defined? current_user
     end
 
     # Only allow a list of trusted parameters through.
