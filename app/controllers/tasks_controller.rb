@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if defined? current_user
+    if defined?(current_user) && current_user
       @tasks = current_user.tasks
     else
       @tasks = Task.all
@@ -73,7 +73,7 @@ class TasksController < ApplicationController
     end
 
     def login_function_required
-      redirect_to tasks_path, notice: "ログイン機能を実装してください。" unless defined? current_user
+      redirect_to tasks_path, notice: "ログイン機能を実装してください。" unless defined?(current_user)
     end
 
     # Only allow a list of trusted parameters through.
